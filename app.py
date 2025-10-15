@@ -14,20 +14,7 @@ for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-# 🎙️ --- Voice Input Section (ADD THIS BLOCK) ---
-st.subheader("🎤 Speak to MallBuddy")
-voice_text = speech_to_text(language='en')
 
-if voice_text:
-    st.session_state.messages.append({"role": "user", "content": voice_text})
-    st.chat_message("user").markdown(voice_text)
-
-    with st.chat_message("assistant"):
-        with st.spinner("MallBuddy 🤖 is thinking..."):
-            response = run_query(voice_text)
-
-        st.markdown(response)
-        st.session_state.messages.append({"role": "assistant", "content": response})
 
 # 🧑 --- Text Input Section (EXISTING CODE) ---
 if prompt := st.chat_input("Ask me about shops, offers, food, movies..."):
